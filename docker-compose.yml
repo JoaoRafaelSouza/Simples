@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: petshop-app
+    ports:
+      - "8086:80"
+    volumes:
+      - ./petshop:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - petshop
+
+  mysql:
+    image: mysql:8.0
+    container_name: petshop-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: petshop
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - petshop
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8085:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - petshop
+
+volumes:
+  mysql-data:
+
+networks:
+  petshop:
+    driver: bridge
