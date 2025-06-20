@@ -17,6 +17,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 // Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/', function () {
-    return view('app'); // carrega a tela do Vue
-});
+// Route::get('/', function () {
+//     return view('app'); // carrega a tela do Vue
+// });
+
+Route::get('/{any}', function () {
+    return view('app'); // ou outro nome da view Blade que carrega #app
+})->where('any', '.*');
