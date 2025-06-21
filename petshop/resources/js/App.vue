@@ -24,7 +24,7 @@
       </div>
 
       <div class="flex justify-end mb-6">
-        <a href="#" class="text-sm text-blue-500 hover:underline">Esqueci minha senha</a>
+        <a href="#" class="text-sm text-blue-500 hover:underline">Esqueci minha senha teste</a>
       </div>
 
       <button
